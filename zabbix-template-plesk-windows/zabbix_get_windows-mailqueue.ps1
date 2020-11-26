@@ -1,0 +1,1 @@
+﻿Get-Content 'C:\Program Files\Zabbix Agent\scripts\zabbix_count_mails.txt'

@@ -1,0 +1,2 @@
+# Mail Queue
+UserParameter=mail.queue,powershell.exe -NoProfile -ExecutionPolicy Bypass -file "C:\Program Files\Zabbix Agent\scripts\zabbix_check_windows-mailqueue.ps1"

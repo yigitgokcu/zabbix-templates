@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-02-11T11:23:21Z</date>
+    <groups>
+        <group>
+            <name>Templates/Applications</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template for Plesk</template>
+            <name>Template for Plesk</name>
+            <groups>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Plesk</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>MailEnable - Number of mails in queue</name>
+                    <key>mail.queue</key>
+                    <delay>60s</delay>
+                    <units>mails</units>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{min(60)}&gt;100</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{min(60)}&lt;100</recovery_expression>
+                            <name>Number of mail in queue is high on {HOST.NAME} ({ITEM.LASTVALUE} mails)</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <expression>{min(60)}&gt;150</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{min(60)}&lt;150</recovery_expression>
+                            <name>Number of mail in queue is too high on {HOST.NAME} ({ITEM.LASTVALUE} mails)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Microsoft FTP service</name>
+                    <key>net.tcp.service[tcp,,21]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Microsoft FTP service not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Plesk HTTP server</name>
+                    <key>net.tcp.service[tcp,,80]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Plesk HTTP server is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>MailEnable POP service</name>
+                    <key>net.tcp.service[tcp,,110]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>MailEnable POP service is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>MailEnable IMAP service</name>
+                    <key>net.tcp.service[tcp,,143]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>MailEnable IMAP service is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Plesk HTTPS server</name>
+                    <key>net.tcp.service[tcp,,443]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Plesk HTTPS server is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>MailEnable SMTP service</name>
+                    <key>net.tcp.service[tcp,,587]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>MailEnable SMTP connector is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Plesk MSSQL server</name>
+                    <key>net.tcp.service[tcp,,1433]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Plesk MSSQL server is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Plesk service</name>
+                    <key>net.tcp.service[tcp,,8443]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Plesk</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Plesk service is not running on {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>Service state</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>

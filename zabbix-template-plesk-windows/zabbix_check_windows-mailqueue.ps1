@@ -1,0 +1,2 @@
+﻿[Int]$Count = ( dir 'C:\Program Files (x86)\Parallels\Plesk\Mail Servers\Mail Enable\Queues\SMTP\Outgoing' -File | Measure-Object).Count
+Set-Content -Path 'C:\Program Files\Zabbix Agent\scripts\zabbix_count_mails.txt' -Value $Count
