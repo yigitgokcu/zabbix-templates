@@ -4,8 +4,8 @@ Zabbix Template for monitoring MariaDB &amp; Galera Cluster in a linux environme
 ## Installation
 
 ```
-git clone https://github.com/yigitgokcu/zabbix-template-mysql-galera_cluster-linux.git /tmp/zabbix-mysql
-cp /tmp/zabbix-mysql/userparameter_mysql.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
+git clone https://github.com/yigitgokcu/zabbix-templates.git /tmp/zabbix-templates
+cp /tmp/zabbix-templates/zabbix-template-mysql-galera_cluster-linux/userparameter_mysql.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
 rm -rf /tmp/zabbix-mysql*
 
 mysql -e "CREATE USER 'zabbix'@'localhost' IDENTIFIED BY '$PASS';"
@@ -27,9 +27,8 @@ Link ```Template DB MySQL.xml``` with your host on zabbix server.
 ## For Galera
 
 ```
-git clone https://github.com/yigitgokcu/zabbix-template-mysql-galera_cluster-linux.git /tmp/zabbix-mysql
-cp /tmp/zabbix-mysql/userparameter_mysql.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
-rm -rf /tmp/zabbix-mysql*
+cp /tmp/zabbix-templates/zabbix-template-mysql-galera_cluster-linux/userparameter_galera.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
+rm -rf /tmp/zabbix-templates
 service zabbix-agent restart
 ```
 
