@@ -11,3 +11,6 @@
 * [zabbix-template-nginx-linux](zabbix-template-nginx-linux/README.md)
 * [zabbix-template-phpfpm-linux](zabbix-template-phpfpm-linux/README.md)
 * [zabbix-template-postfix-linux](zabbix-template-postfix-linux/README.md)
+* [zabbix-template-postgresql-linux](zabbix-template-postgresql-linux/README.md)
+* [zabbix-template-plesk-windows](zabbix-template-plesk-windows/README.md)
+* [zabbix-template-check-updates-windows](zabbix-template-check-updates-windows/README.md)
