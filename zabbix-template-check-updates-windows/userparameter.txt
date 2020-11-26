@@ -1,0 +1,2 @@
+# Check Updates
+UserParameter=os.pending.updates,powershell.exe -NoProfile -ExecutionPolicy Bypass -file "C:\Program Files\Zabbix Agent\scripts\zabbix_get_windows-updates.ps1"
