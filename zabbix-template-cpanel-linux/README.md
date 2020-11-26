@@ -4,12 +4,12 @@ Zabbix Template for monitoring Cpanel Services in a linux environment.
 ## Installation
 
 ```
-git clone https://github.com/yigitgokcu/zabbix-template-cpanel-linux.git /tmp/zabbix-template-cpanel-linux
-cp /tmp/zabbix-template-cpanel-linux/userparameter_cpanel.conf  $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
-cp /tmp/zabbix-template-cpanel-linux/zabbix_exim-* /var/lib/zabbix/scripts/
-rm -rf /tmp/zabbix-template-cpanel-linux*
+git clone https://github.com/yigitgokcu/zabbix-templates.git /tmp/zabbix-templates
+cp /tmp/zabbix-templates/zabbix-template-cpanel-linux/userparameter_cpanel.conf  $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
+cp /tmp/zabbix-templates/zabbix-template-cpanel-linux/zabbix_exim-* /var/lib/zabbix/scripts/
 chown -R zabbix:zabbix /var/lib/zabbix/scripts/zabbix_exim-*
 chmod a+x /var/lib/zabbix/scripts/zabbix_exim-*
+rm -rf /tmp/zabbix-templates
 
 # Grant privileges to the scripts only
 echo 'zabbix ALL=(ALL) NOPASSWD: /usr/sbin/exim -bp' >> /etc/sudoers
