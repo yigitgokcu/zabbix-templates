@@ -5,12 +5,13 @@ Scripts for monitoring SSL statuses of domains in Zabbix
 
 ```
 mkdir /var/lib/zabbix/scripts/zabbix_check_ssl/
-git clone https://github.com/yigitgokcu/zabbix-check-SSL-expiration.git /tmp/zabbix-check-SSL-expiration
-cp /tmp/zabbix-check-SSL-expiration/userparameter_ssl-check.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
-cp /tmp/zabbix-check-SSL-expiration/zabbix_*.sh /var/lib/zabbix/scripts/zabbix_ssl_check/
-rm -rf /tmp/zabbix-check-SSL-expiration*
+git clone https://github.com/yigitgokcu/zabbix-templates.git /tmp/zabbix-templates
+cp /tmp/zabbix-templateszabbix-check-SSL-expiration/userparameter_ssl-check.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
+cp /tmp/zabbix-templateszabbix-check-SSL-expiration/zabbix_*.sh /var/lib/zabbix/scripts/zabbix_ssl_check/
 chown -R zabbix:zabbix /var/lib/zabbix/scripts/zabbix_ssl_check/zabbix_*.sh
 chmod a+x /var/lib/zabbix/scripts/zabbix_*.sh
+
+rm -rf /tmp/zabbix-templates
 
 echo 'domain.tld' >> /var/lib/zabbix/scripts/zabbix_ssl_check/domains.txt # add some domains
 chown -R zabbix:zabbix /var/lib/zabbix/scripts/zabbix_ssl_check/
