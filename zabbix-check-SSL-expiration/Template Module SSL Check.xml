@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-06-24T11:33:38Z</date>
+    <groups>
+        <group>
+            <name>Templates/Modules</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Module SSL Check</template>
+            <name>Template Module SSL Check</name>
+            <groups>
+                <group>
+                    <name>Templates/Modules</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>SSL</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>sslchecker</name>
+                    <key>sslchecker[]</key>
+                    <delay>900</delay>
+                    <lifetime>1d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>SSL Status for {#DOMAIN}</name>
+                            <key>sslchecker[{#DOMAIN},STATUS]</key>
+                            <delay>1d</delay>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>SSL</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>SSL TTL  for {#DOMAIN}</name>
+                            <key>sslchecker[{#DOMAIN},TTL]</key>
+                            <delay>1d</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>days</units>
+                            <applications>
+                                <application>
+                                    <name>SSL</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.000011574074074074073</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&lt;7</expression>
+                                    <name>{ITEM.VALUE} day(s) left to expire - SSL Certificate for {#DOMAIN}</name>
+                                    <priority>AVERAGE</priority>
+                                    <dependencies>
+                                        <dependency>
+                                            <name>Bad Certificate for {#DOMAIN}</name>
+                                            <expression>{Template Module SSL Check:sslchecker[{#DOMAIN},STATUS].regexp(&quot;(BAD)&quot;)}=1 or {Template Module SSL Check:sslchecker[{#DOMAIN},TTL].last()}=0</expression>
+                                        </dependency>
+                                    </dependencies>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Module SSL Check:sslchecker[{#DOMAIN},STATUS].regexp(&quot;(BAD)&quot;)}=1 or {Template Module SSL Check:sslchecker[{#DOMAIN},TTL].last()}=0</expression>
+                            <name>Bad Certificate for {#DOMAIN}</name>
+                            <priority>HIGH</priority>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
