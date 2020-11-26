@@ -4,9 +4,9 @@ Zabbix Template for monitoring Pending Updates in a linux environment.
 ## Installation
 
 ```
-git clone https://github.com/yigitgokcu/zabbix-template-check-updates-linux.git /tmp/zabbix-template-check-updates
-cp /tmp/zabbix-template-check-updates/userparameter_checkupdates.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
-rm -rf /tmp/zabbix-template-check-updates*
+git clone https://github.com/yigitgokcu/zabbix-templates.git /tmp/zabbix-templates
+cp /tmp/zabbix-templates/zabbix-template-check-updates-linux/userparameter_checkupdates.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
+rm -rf /tmp/zabbix-templates
 service zabbix-agent restart
 ```
 ## Add CronJob (RHEL/CentOS)
