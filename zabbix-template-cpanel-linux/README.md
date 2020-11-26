@@ -19,4 +19,4 @@ echo 'zabbix ALL=(ALL) NOPASSWD: /var/lib/zabbix/scripts/zabbix_exim-find-spamme
 
 service zabbix-agent restart
 ```
-Import  ```Template Cpanel.xml ```  to zabbix server and link with your host.
+Import  ```Template for Cpanel.xml ```  to zabbix server and link with your host.
