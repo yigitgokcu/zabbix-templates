@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-02-11T10:59:22Z</date>
+    <groups>
+        <group>
+            <name>Templates/Vargonen</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Cpanel Hosting</template>
+            <name>Template Cpanel Hosting</name>
+            <templates>
+                <template>
+                    <name>Template Check Updates Linux OS</name>
+                </template>
+                <template>
+                    <name>Template DB MySQL</name>
+                </template>
+                <template>
+                    <name>Template Disk Performance</name>
+                </template>
+                <template>
+                    <name>Template for Cpanel</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Templates/Vargonen</name>
+                </group>
+            </groups>
+        </template>
+    </templates>
+</zabbix_export>
