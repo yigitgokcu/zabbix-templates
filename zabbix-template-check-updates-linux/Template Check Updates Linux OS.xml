@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-11-26T08:29:22Z</date>
+    <groups>
+        <group>
+            <name>Templates/Vargonen</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Check Updates Linux OS</template>
+            <name>Template Check Updates Linux OS</name>
+            <groups>
+                <group>
+                    <name>Templates/Vargonen</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Check Pending Updates</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Pending Updates</name>
+                    <key>os.updates.pending</key>
+                    <delay>0;wd5h8</delay>
+                    <units>update(s)</units>
+                    <applications>
+                        <application>
+                            <name>Check Pending Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last()}&lt;=1</recovery_expression>
+                            <name>{ITEM.LASTVALUE} are pending on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>Pending Updates</name>
+            <show_work_period>NO</show_work_period>
+            <show_triggers>NO</show_triggers>
+            <graph_items>
+                <graph_item>
+                    <drawtype>FILLED_REGION</drawtype>
+                    <color>26C6DA</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Check Updates Linux OS</host>
+                        <key>os.updates.pending</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
