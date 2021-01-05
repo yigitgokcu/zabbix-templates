@@ -4,9 +4,10 @@ Zabbix Template for monitoring PHP-FPM in a linux environment.
 ## Installation
 
 ```
+mkdir /var/lib/zabbix/scripts/zabbix_php-fpm
 git clone https://github.com/yigitgokcu/zabbix-templates.git /tmp/zabbix-templates
 cp /tmp/zabbix-templates/zabbix-template-phpfpm-linux/userparameter_php_fpm.conf $(find /etc/zabbix/ -name zabbix_agentd*.d -type d | head -n1)
-cp /tmp/zabbix-templates/zabbix-template-phpfpm-linux/zabbix_php_fpm_*.sh /var/lib/zabbix/scripts/
+cp /tmp/zabbix-templates/zabbix-template-phpfpm-linux/zabbix_php_fpm_*.sh /var/lib/zabbix/scripts/zabbix_php-fpm/
 cp /tmp/zabbix-templates/zabbix-template-phpfpm-linux/statistics.conf /etc/nginx/conf.d/ && service nginx reload
 chown -R zabbix:zabbix /var/lib/zabbix/scripts/zabbix_php_fpm_*.sh
 chmod a+x /var/lib/zabbix/scripts/zabbix_php_fpm_*.sh
