@@ -14,3 +14,4 @@
 * [zabbix-template-postgresql-linux](zabbix-template-postgresql-linux/README.md)
 * [zabbix-template-plesk-windows](zabbix-template-plesk-windows/README.md)
 * [zabbix-template-check-updates-windows](zabbix-template-check-updates-windows/README.md)
+* [zabbix-template-exim-linux](zabbix-template-exim-linux/README.md)
