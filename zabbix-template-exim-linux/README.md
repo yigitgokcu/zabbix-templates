@@ -14,6 +14,6 @@ rm -rf /tmp/zabbix-templates
 service zabbix-agent restart
 ```
 ## Add CronJob
-```(crontab -u root -l; echo "*/5 * * * *  /var/lib/zabbix/scripts/zabbix_exim-stats/zabbix_exim-stats.sh >/dev/null" ) | crontab -u root -```
+```(crontab -u root -l; echo "*/5 * * * *  /var/lib/zabbix/scripts/zabbix_exim-stats/zabbix_exim-stats.sh >/dev/null" ) | crontab -u root - ```
 
-Import  ```Template App Exim by Zabbix Agent active ```  to zabbix server and link with your host.
+Import  ```Template App Exim by Zabbix Agent active```  to zabbix server and link with your host.
