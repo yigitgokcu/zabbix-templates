@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Envs
+# ---------------------------------------------------\
+
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+SCRIPT_PATH=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
+
+
+# Variables
+# ---------------------------------------------------\
+
 EXIMLOG=/var/log/exim4/mainlog
 MYLOG=/tmp/exim_status.log
 OFFSETFILE=/tmp/eximstatusoffset.dat
@@ -10,7 +20,11 @@ ZABBIX_CONF=/etc/zabbix/zabbix_agentd.conf
 TMP1=$(mktemp)
 TMP2=$(mktemp)
 
+# Main
+# ---------------------------------------------------\
+
 function zsend {
+
 echo "$1 $2"
 $ZABBIX_SENDER -c $ZABBIX_CONF -k $1 -o $2
 
@@ -27,6 +41,7 @@ zsend exerrors `grep -m 1 Errors $TMP2|awk '{print $3}'`
 zsend exbytesreceived `grep -m 1 "Received" $TMP2|awk '{print $2}'`
 zsend exbytesdelivered `grep -m 1 "Delivered" $TMP2|awk '{print $2}'`
 zsend exmailqueue `mailq | grep -c "[a-A0-9]"`
+
 
 rm $TMP1
 rm $TMP2
