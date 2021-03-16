@@ -1,0 +1,1997 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.2</version>
+    <date>2021-03-16T08:18:13Z</date>
+    <groups>
+        <group>
+            <name>Templates/Applications</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template App Zimbra Statistics</template>
+            <name>Template App Zimbra Statistics</name>
+            <description>Need script in zabbix/scripts and cron task
+
+Stats Collection
+
+https://wiki.zimbra.com/wiki/Server_Monitoring</description>
+            <groups>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Zimbra Statistics</name>
+                </application>
+                <application>
+                    <name>Zimbra Traffic Statistic</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Number of mails in queue</name>
+                    <key>zimbra-mailqueue</key>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{min(1m)}&gt;=100</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{min(1m)}&lt;100</recovery_expression>
+                            <name>Number of mail in queue is high on {HOST.NAME} ({ITEM.LASTVALUE} mails)</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>{min(1m)}&gt;=150</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{min(1m)}&lt;150</recovery_expression>
+                            <name>Number of mail in queue is too high on {HOST.NAME} ({ITEM.LASTVALUE} mails)</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Account cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.account_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP account cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP account cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.account_cache_size</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP ACL cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.acl_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP ACL cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of times that the file descriptor cache read message data from disk</name>
+                    <type>TRAP</type>
+                    <key>zimbra.bis_read</key>
+                    <delay>0</delay>
+                    <description>Number of times that the file descriptor cache read message data from disk</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Percentage of file descriptor cache disk reads that required a seek</name>
+                    <type>TRAP</type>
+                    <key>zimbra.bis_seek_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Percentage of file descriptor cache disk reads that required a seek</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hit rate of calendar summary cache, counting cache hit from both memory and file</name>
+                    <type>TRAP</type>
+                    <key>zimbra.calcache_hit</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>Hit rate of calendar summary cache, counting cache hit from both memory and file</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of calendars (folders) in the calendar summary cache LRU in Java heap</name>
+                    <type>TRAP</type>
+                    <key>zimbra.calcache_lru_size</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Number of calendars (folders) in the calendar summary cache LRU in Java heap</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hit rate of calendar summary cache, counting cache hit from memory only</name>
+                    <type>TRAP</type>
+                    <key>zimbra.calcache_mem_hit</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>Hit rate of calendar summary cache, counting cache hit from memory only</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP COS cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.cos_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP COS cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP COS cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.cos_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP COS cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of times that the server got a database connection from the pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.db_conn_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that the server got a database connection from the pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average latency (ms) of getting a database connection from the pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.db_conn_ms_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Average latency (ms) of getting a database connection from the pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of database connections in use</name>
+                    <type>TRAP</type>
+                    <key>zimbra.db_pool_size</key>
+                    <delay>0</delay>
+                    <description>Number of database connections in use</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP domain cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.domain_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP domain cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP domain cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.domain_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP domain cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>File descriptor cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.fd_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>File descriptor cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of open file descriptors that reference message content</name>
+                    <type>TRAP</type>
+                    <key>zimbra.fd_cache_size</key>
+                    <delay>0</delay>
+                    <description>Number of open file descriptors that reference message content</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of times that concurrentmarksweep GC was invoked</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_concurrentmarksweep_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that concurrentmarksweep GC was invoked</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Time (ms) spent on concurrentmarksweep GC</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_concurrentmarksweep_ms</key>
+                    <delay>0</delay>
+                    <description>Time (ms) spent on concurrentmarksweep GC</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Number of times that major GC was invoked</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_major_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that major GC was invoked</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Time (ms) spent on major GC</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_major_ms</key>
+                    <delay>0</delay>
+                    <description>Time (ms) spent on major GC</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Number of times that minor GC was invoked</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_minor_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that minor GC was invoked</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Time (ms) spent on minor GC</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_minor_ms</key>
+                    <delay>0</delay>
+                    <description>Time (ms) spent on minor GC</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Number of times that parnew GC was invoked</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_parnew_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that parnew GC was invoked</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Time (ms) spent on parnew GC</name>
+                    <type>TRAP</type>
+                    <key>zimbra.gc_parnew_ms</key>
+                    <delay>0</delay>
+                    <description>Time (ms) spent on parnew GC</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>LDAP group cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.group_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP group cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP group cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.group_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP group cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the entire JVM heap</name>
+                    <type>TRAP</type>
+                    <key>zimbra.heap_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the entire JVM heap</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the entire JVM heap</name>
+                    <type>TRAP</type>
+                    <key>zimbra.heap_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the entire JVM heap</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of idle HTTP handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.http_idle_threads</key>
+                    <delay>0</delay>
+                    <description>Number of idle HTTP handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of HTTP handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.http_threads</key>
+                    <delay>0</delay>
+                    <description>Number of HTTP handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Accumulated bytes read by Lucene</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_bytes_read</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Accumulated bytes read by Lucene</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average of idx_bytes_read</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_bytes_read_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>B</units>
+                    <description>Average of idx_bytes_read</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Accumulated bytes written by Lucene</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_bytes_written</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Accumulated bytes written by Lucene</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average of idx_bytes_written</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_bytes_written_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>B</units>
+                    <description>Average of idx_bytes_written</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average number of concurrent index writers</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_wrt_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Average number of concurrent index writers</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Accumulated number of index writers opened</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_wrt_opened</key>
+                    <delay>0</delay>
+                    <description>Accumulated number of index writers opened</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Accumulated number of cache hits when opening an index writer</name>
+                    <type>TRAP</type>
+                    <key>zimbra.idx_wrt_opened_cache_hit</key>
+                    <delay>0</delay>
+                    <description>Accumulated number of cache hits when opening an index writer</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of cleartext IMAP connections</name>
+                    <type>TRAP</type>
+                    <key>zimbra.imap_conn</key>
+                    <delay>0</delay>
+                    <description>Number of cleartext IMAP connections</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of IMAP requests received</name>
+                    <type>TRAP</type>
+                    <key>zimbra.imap_count</key>
+                    <delay>0</delay>
+                    <description>Number of IMAP requests received</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average processing time (ms) of IMAP requests</name>
+                    <type>TRAP</type>
+                    <key>zimbra.imap_ms_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Average processing time (ms) of IMAP requests</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of SSL IMAP connections</name>
+                    <type>TRAP</type>
+                    <key>zimbra.imap_ssl_conn</key>
+                    <delay>0</delay>
+                    <description>Number of SSL IMAP connections</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of IMAP SSL handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.imap_ssl_threads</key>
+                    <delay>0</delay>
+                    <description>Number of IMAP SSL handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of IMAP handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.imap_threads</key>
+                    <delay>0</delay>
+                    <description>Number of IMAP handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>InnoDB buffer pool hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.innodb_bp_hit_rate</key>
+                    <delay>0</delay>
+                    <units>%</units>
+                    <description>InnoDB buffer pool hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of times that the server got an LDAP directory context</name>
+                    <type>TRAP</type>
+                    <key>zimbra.ldap_dc_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that the server got an LDAP directory context</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average latency (ms) of getting an LDAP directory context</name>
+                    <type>TRAP</type>
+                    <key>zimbra.ldap_dc_ms_avg</key>
+                    <delay>0</delay>
+                    <description>Average latency (ms) of getting an LDAP directory context</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of LMTP connections</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_conn</key>
+                    <delay>0</delay>
+                    <description>Number of LMTP connections</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes of data delivered to mailboxes as a result of LMTP delivery</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_dlvd_bytes</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes of data delivered to mailboxes as a result of LMTP delivery</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of messages delivered to mailboxes as a result of LMTP delivery</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_dlvd_msgs</key>
+                    <delay>0</delay>
+                    <description>Number of messages delivered to mailboxes as a result of LMTP delivery</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes received over LMTP</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_rcvd_bytes</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes received over LMTP</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of messages received over LMTP</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_rcvd_msgs</key>
+                    <delay>0</delay>
+                    <description>Number of messages received over LMTP</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of LMTP recipients</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_rcvd_rcpt</key>
+                    <delay>0</delay>
+                    <description>Number of LMTP recipients</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of LMTP handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.lmtp_threads</key>
+                    <delay>0</delay>
+                    <description>Number of LMTP handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of messages that were added to a mailbox</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_add_msg_count</key>
+                    <delay>0</delay>
+                    <description>Number of messages that were added to a mailbox</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average latency (ms) of adding a message to a mailbox</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_add_msg_ms_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Average latency (ms) of adding a message to a mailbox</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Mailbox cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_cache</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>Mailbox cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of mailboxes cached in memory</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_cache_size</key>
+                    <delay>0</delay>
+                    <description>Number of mailboxes cached in memory</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of times that the server got a mailbox from the cache</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_get_count</key>
+                    <delay>0</delay>
+                    <description>Number of times that the server got a mailbox from the cache</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average latency (ms) of getting a mailbox from the cache</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_get_ms_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Average latency (ms) of getting a mailbox from the cache</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Item cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_item_cache</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>Item cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Message cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mbox_msg_cache</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>Message cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the cms old gen memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_cms_old_gen_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the cms old gen memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the cms old gen memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_cms_old_gen_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the cms old gen memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the code cache memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_code_cache_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the code cache memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the code cache memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_code_cache_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the code cache memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the compressed class space memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_compressed_class_space_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the compressed class space memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the compressed class space memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_compressed_class_space_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the compressed class space memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the metaspace memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_metaspace_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the metaspace memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the metaspace memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_metaspace_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the metaspace memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the par eden space memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_par_eden_space_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the par eden space memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the par eden space memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_par_eden_space_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the par eden space memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes free in the par survivor space memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_par_survivor_space_free</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes free in the par survivor space memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of bytes used in the par survivor space memory pool</name>
+                    <type>TRAP</type>
+                    <key>zimbra.mpool_par_survivor_space_used</key>
+                    <delay>0</delay>
+                    <units>B</units>
+                    <description>Number of bytes used in the par survivor space memory pool</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of message structures cached in memory</name>
+                    <type>TRAP</type>
+                    <key>zimbra.msg_cache_size</key>
+                    <delay>0</delay>
+                    <description>Number of message structures cached in memory</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of cleartext POP3 connections</name>
+                    <type>TRAP</type>
+                    <key>zimbra.pop_conn</key>
+                    <delay>0</delay>
+                    <description>Number of cleartext POP3 connections</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of POP3 requests received</name>
+                    <type>TRAP</type>
+                    <key>zimbra.pop_count</key>
+                    <delay>0</delay>
+                    <description>Number of POP3 requests received</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average processing time (ms) of POP3 requests</name>
+                    <type>TRAP</type>
+                    <key>zimbra.pop_ms_avg</key>
+                    <delay>0</delay>
+                    <description>Average processing time (ms) of POP3 requests</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of SSL POP3 connections</name>
+                    <type>TRAP</type>
+                    <key>zimbra.pop_ssl_conn</key>
+                    <delay>0</delay>
+                    <description>Number of SSL POP3 connections</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of POP3 SSL handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.pop_ssl_threads</key>
+                    <delay>0</delay>
+                    <description>Number of POP3 SSL handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of POP3 handler threads</name>
+                    <type>TRAP</type>
+                    <key>zimbra.pop_threads</key>
+                    <delay>0</delay>
+                    <description>Number of POP3 handler threads</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP server cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.server_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP server cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP server cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.server_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP server cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of SOAP requests received</name>
+                    <type>TRAP</type>
+                    <key>zimbra.soap_count</key>
+                    <delay>0</delay>
+                    <description>Number of SOAP requests received</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average processing time (ms) of SOAP requests</name>
+                    <type>TRAP</type>
+                    <key>zimbra.soap_ms_avg</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <description>Average processing time (ms) of SOAP requests</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of SOAP sessions</name>
+                    <type>TRAP</type>
+                    <key>zimbra.soap_sessions</key>
+                    <delay>0</delay>
+                    <description>Number of SOAP sessions</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Messages bytes delivered</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;bdelivered&quot;]</key>
+                    <history>30d</history>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages bounced</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;bounced&quot;]</key>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages bytes received</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;breceived&quot;]</key>
+                    <history>30d</history>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages deferred</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;deferred&quot;]</key>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages delivered</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;delivered&quot;]</key>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages forwarded</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;forwarded&quot;]</key>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages received</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;received&quot;]</key>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Messages rejected</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;rejected&quot;]</key>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Total bytes delivered Yesterday</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;total_bdelivered&quot;]</key>
+                    <delay>1d</delay>
+                    <units>B</units>
+                    <description>Total bytes count delivered yesterday</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Total bytes received Yesterday</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;total_breceived&quot;]</key>
+                    <delay>1d</delay>
+                    <units>B</units>
+                    <description>Total bytes count received yesterday</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Total messages delivered Yesterday</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;total_delivered&quot;]</key>
+                    <delay>1d</delay>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Total messages received Yesterday</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>zimbra.traffic[&quot;total_received&quot;]</key>
+                    <delay>1d</delay>
+                    <applications>
+                        <application>
+                            <name>Zimbra Traffic Statistic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP UC service cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.ucservice_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP UC service cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP UC service cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.ucservice_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP UC service cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP XMPP cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.xmpp_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP XMPP cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP XMPP cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.xmpp_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP XMPP cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP zimlet cache hit rate</name>
+                    <type>TRAP</type>
+                    <key>zimbra.zimlet_cache_hit_rate</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>LDAP zimlet cache hit rate</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LDAP zimlet cache size</name>
+                    <type>TRAP</type>
+                    <key>zimbra.zimlet_cache_size</key>
+                    <delay>0</delay>
+                    <description>LDAP zimlet cache size</description>
+                    <applications>
+                        <application>
+                            <name>Zimbra Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>Zimbra cache hit rate</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.account_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.fd_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mbox_item_cache</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mbox_cache</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mbox_msg_cache</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra invoked GC</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_concurrentmarksweep_count</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_major_count</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_minor_count</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_parnew_count</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra LDAP cache hit rate</name>
+            <graph_items>
+                <graph_item>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.acl_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.cos_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.domain_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.group_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>611F27</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.server_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>F230E0</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.ucservice_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>5CCD18</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.xmpp_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>7</sortorder>
+                    <color>BB2A02</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.zimlet_cache_hit_rate</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra LDAP cache size</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.account_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.cos_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.domain_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.group_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.server_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.ucservice_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.xmpp_cache_size</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>7</sortorder>
+                    <color>611F27</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.zimlet_cache_size</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra memory pool free bytes</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_cms_old_gen_free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_code_cache_free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_compressed_class_space_free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_metaspace_free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_par_eden_space_free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_par_survivor_space_free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.heap_free</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra memory pool used bytes</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_cms_old_gen_used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_code_cache_used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_compressed_class_space_used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.heap_used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_metaspace_used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_par_eden_space_used</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.mpool_par_survivor_space_used</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra number of threads</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.http_threads</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.http_idle_threads</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.imap_threads</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.imap_ssl_threads</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.lmtp_threads</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.pop_threads</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.pop_ssl_threads</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra timings GC</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_concurrentmarksweep_ms</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_major_ms</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_minor_ms</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.gc_parnew_ms</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra Traffic Bytes</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;bdelivered&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;breceived&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zimbra Traffic Counters</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;bounced&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;deferred&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;delivered&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;forwarded&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;received&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>Template App Zimbra Statistics</host>
+                        <key>zimbra.traffic[&quot;rejected&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
