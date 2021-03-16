@@ -15,3 +15,4 @@
 * [zabbix-template-plesk-windows](zabbix-template-plesk-windows/README.md)
 * [zabbix-template-check-updates-windows](zabbix-template-check-updates-windows/README.md)
 * [zabbix-template-exim-linux](zabbix-template-exim-linux/README.md)
+* [zabbix-template-zimbra-linux](zabbix-template-zimbra-linux/README.md)
