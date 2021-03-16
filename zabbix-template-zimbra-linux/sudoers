@@ -1,0 +1,2 @@
+zabbix ALL=NOPASSWD: /opt/zimbra/common/bin/pflogsumm.pl, /var/lib/zabbix/scripts/zabbix_zimbra/zabbix_zimbra-stats.sh
+zabbix ALL=NOPASSWD: /var/lib/zabbix/scripts/zabbix_zimbra/zabbix_zimbra-services.sh
