@@ -1,7 +1,4 @@
 #!/bin/bash
-#Ramil Valitov ramilvalitov@gmail.com
-#https://github.com/rvalitov/zabbix-php-fpm
-#Script gets status of PHP-FPM pool
 
 S_FCGI=$(type -P cgi-fcgi)
 S_GREP=$(type -P grep)
