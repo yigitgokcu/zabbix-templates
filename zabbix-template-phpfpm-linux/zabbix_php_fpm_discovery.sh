@@ -1,6 +1,4 @@
 #!/bin/bash
-#Ramil Valitov ramilvalitov@gmail.com
-#https://github.com/rvalitov/zabbix-php-fpm
 #This script scans local machine for active PHP-FPM pools and returns them as a list in JSON format
 
 S_PS=$(type -P ps)
