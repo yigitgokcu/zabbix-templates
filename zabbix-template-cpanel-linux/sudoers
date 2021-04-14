@@ -2,3 +2,5 @@ zabbix ALL=(ALL) NOPASSWD: /usr/sbin/exim -bp
 zabbix ALL=(ALL) NOPASSWD: /usr/sbin/whmapi1
 zabbix ALL=(ALL) NOPASSWD: /var/lib/zabbix/scripts/zabbix_exim-delete-frozen.sh
 zabbix ALL=(ALL) NOPASSWD: /var/lib/zabbix/scripts/zabbix_exim-find-spammer.py
+zabbix ALL=(ALL) NOPASSWD: /var/lib/zabbix/scripts/stats/zabbix_check-stats.sh
+zabbix ALL=(ALL) NOPASSWD: /var/lib/zabbix/scripts/db_abusers/zabbix_db-abusers-post.sh
